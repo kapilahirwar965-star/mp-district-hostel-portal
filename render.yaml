@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: mp-district-hostel-portal
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mp-hostel-postgres-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: CSRF_SECRET
+        generateValue: true
+
+databases:
+  - name: mp-hostel-postgres-db
+    plan: starter
+    databaseName: mp_hostel_portal
+    user: mp_portal_admin

@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: mp_portal_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-PortalSecure2026}
+      POSTGRES_DB: mp_hostel_portal
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+  portal:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      PORT: 4000
+      DATABASE_URL: postgresql://mp_portal_admin:${POSTGRES_PASSWORD:-PortalSecure2026}@postgres:5432/mp_hostel_portal
+      SESSION_SECRET: ${SESSION_SECRET:-change_me_in_prod}
+    ports:
+      - "4000:4000"
+volumes:
+  pgdata:
