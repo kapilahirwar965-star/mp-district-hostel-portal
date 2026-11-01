@@ -1,0 +1,8 @@
+{
+  "name": "मध्य प्रदेश जिला छात्रावास मॉनिटरिंग पोर्टल",
+  "short_name": "MP Hostel Portal",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#1e3a8a"
+}

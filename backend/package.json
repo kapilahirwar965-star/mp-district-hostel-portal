@@ -1,0 +1,25 @@
+{
+  "name": "mp-district-hostel-monitoring-portal",
+  "version": "1.1.0",
+  "description": "मध्य प्रदेश शासन — जिला छात्रावास मॉनिटरिंग एवं स्थापना शाखा प्रबंधन पोर्टल (PostgreSQL + Express Full-Stack)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "migrate": "psql $DATABASE_URL -f ../database/schema.sql",
+    "migrate:hostel-types": "psql $DATABASE_URL -f ../database/migrations/002_safe_hostel_types_migration.sql",
+    "test": "node ../tests/verify_zero_data_and_crud.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-pg-simple": "^9.0.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
+    "express-session": "^1.18.0",
+    "helmet": "^7.1.0",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.5",
+    "zod": "^3.23.8"
+  }
+}
